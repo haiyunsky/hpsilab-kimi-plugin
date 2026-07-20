@@ -50,9 +50,9 @@ kimi
 
 ## 内置命令
 
-- `/analyze <股票代码>`：调用 HPSILab 做一次全景量化分析。
-- `/report <股票代码>`：生成完整股票研究报告；此 Pro 工具可能触发 x402 计费。
-- `/hpsilab-check`：只读检查 MCP 连接、9 个工具的发现状态、轻量调用和 Pro 工具提示，不执行支付。
+- `/hpsilab-kimi-plugin:analyze <股票代码>`：调用 HPSILab 做一次全景量化分析。
+- `/hpsilab-kimi-plugin:report <股票代码>`：生成完整股票研究报告；此 Pro 工具可能触发 x402 计费。
+- `/hpsilab-kimi-plugin:hpsilab-check`：只读检查 MCP 连接、9 个工具的发现状态、轻量调用和 Pro 工具提示，不执行支付。
 
 ## 本地验证步骤
 
@@ -67,7 +67,7 @@ kimi
 2. 执行 `/plugins reload`，或退出后新开一个 Kimi 会话。
 3. 执行 `/mcp`，确认 `hpsilab` 的连接状态为 `connected`。
 4. 执行 `/plugins info hpsilab-kimi-plugin`，确认 diagnostics 中没有 manifest、路径、认证或 MCP 连接错误。
-5. 先执行 `/hpsilab-check`，确认 9 个工具均已发现，并完成一次 `get_iv_radar` 的轻量探测。
+5. 先执行 `/hpsilab-kimi-plugin:hpsilab-check`，确认 9 个工具均已发现，并完成一次 `get_iv_radar` 的轻量探测。
 6. 使用真实代码 `AAPL`，要求 Kimi 分别调用以下工具，并逐项检查返回值：
 
    ```text

@@ -1,6 +1,6 @@
 {
   "name": "hpsilab-kimi-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "HPSILab quant/options analytics tools for Kimi Code CLI (IV surface, Monte Carlo, Max Pain, AI directional signals)",
   "keywords": ["quant", "options", "finance", "mcp"],
   "author": "Haiyun Hu",
