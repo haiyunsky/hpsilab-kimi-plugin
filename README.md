@@ -53,4 +53,41 @@ kimi
 - `/analyze <股票代码>`：调用 HPSILab 做一次全景量化分析。
 - `/report <股票代码>`：生成完整股票研究报告；此 Pro 工具可能触发 x402 计费。
 
+## 本地验证步骤
+
+下面的步骤需要本机已安装 Kimi Code CLI，并已设置有效的 `HPSILAB_API_TOKEN`：
+
+1. 在 Kimi Code CLI 中安装本地插件：
+
+   ```text
+   /plugins install /absolute/path/to/hpsilab-kimi-plugin
+   ```
+
+2. 执行 `/plugins reload`，或退出后新开一个 Kimi 会话。
+3. 执行 `/mcp`，确认 `hpsilab` 的连接状态为 `connected`。
+4. 执行 `/plugins info hpsilab-kimi-plugin`，确认 diagnostics 中没有 manifest、路径、认证或 MCP 连接错误。
+5. 使用真实代码 `AAPL`，要求 Kimi 分别调用以下工具，并逐项检查返回值：
+
+   ```text
+   analyze_stock
+   get_iv_radar
+   get_option_pressure
+   get_monte_carlo
+   get_ai_prediction
+   get_equity_curves
+   generate_stock_images
+   get_pretrade_risk_scan
+   generate_stock_research_report
+   ```
+
+   建议明确要求 Kimi 每次只调用一个指定工具，并记录成功、失败、HTTP 状态、超时、审批拒绝或支付错误，避免 `analyze_stock` 的聚合结果掩盖某个底层工具失败。
+
+6. 对 `get_pretrade_risk_scan` 和 `generate_stock_research_report` 单独测试：
+
+   - 先使用有效的 `HPSILAB_API_TOKEN`，确认账户套餐内调用是否成功。
+   - 再在测试环境中移除 Token，确认服务端是否返回 x402 payment-required challenge。
+   - Kimi Code CLI 未必具备自动创建和附加 x402 payment payload 的能力。若只收到支付错误或普通失败结果，应视为客户端不支持自动支付，不要假设 Kimi 已完成付款。
+
+服务端通过 MCP `tools/list` 自动公开工具，插件无需手工维护工具清单。除非需要主动隐藏故障或不希望用户调用的工具，否则不应添加 `enabledTools` 或 `disabledTools`。
+
 所有分析、预测与报告仅供研究参考，不构成任何投资建议。
