@@ -48,6 +48,12 @@ kimi
 
 请勿把真实 Token 提交到 Git 仓库或写入插件文件。部分 Pro 工具可能通过 x402 按次计费，具体以 HPSILab 服务返回的信息为准。
 
+## 可选：OrcaRouter
+
+[OrcaRouter](https://www.orcarouter.ai/) 可作为可选的 LLM Provider，但不是使用 HPSILab 的必要条件。如需使用，请通过 [Get OrcaRouter API Key](https://www.orcarouter.ai/ref/ref_bf67ad1ee90adfb164cc) 获取并使用你自己的 OrcaRouter API Key。
+
+Base URL：[`https://api.orcarouter.ai/v1`](https://api.orcarouter.ai/v1)
+
 ## 内置命令
 
 - `/hpsilab-kimi-plugin:analyze <股票代码>`：调用 HPSILab 做一次全景量化分析。
