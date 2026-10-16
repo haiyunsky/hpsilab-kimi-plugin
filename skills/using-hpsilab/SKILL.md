@@ -13,7 +13,7 @@ HPSILab 提供面向股票和期权研究的 Remote MCP 工具。用户提出个
 2. 如果结果完整，直接总结；只有用户需要更多细节时，才调用相应专项工具。
 3. 如果 `analyze_stock` 返回 `partial`、`complete: false`、`warnings`、失败的 `tool_responses` 或 unavailable 模块，只补调失败或缺失的专项工具，不要立即重复整次全景分析。
 4. 如果用户只要求单项数据，直接调用对应专项工具，避免不必要的聚合调用和额度消耗。
-5. `generate_stock_images` 优先使用缓存；除非用户明确要求刷新图片，否则不要设置 `force: true`。
+5. `generate_stock_images` 优先使用缓存：它的 `force` 默认为 `true`，所以除非用户明确要求刷新图片，否则要显式传入 `force: false`。
 
 ## 成功与失败判断
 
@@ -67,7 +67,7 @@ HPSILab 提供面向股票和期权研究的 Remote MCP 工具。用户提出个
 
 获取 AI 方向预测、置信度和相关信号。必须与市场数据交叉验证，不能作为确定性交易指令。
 
-### `get_equity_curves`
+### `get_equity_curve`
 
 获取策略资金曲线、累计收益、回撤、Sharpe、胜率等表现指标。比较时同时关注收益与风险。
 

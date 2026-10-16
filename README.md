@@ -82,7 +82,7 @@ Base URL：[`https://api.orcarouter.ai/v1`](https://api.orcarouter.ai/v1)
    get_option_pressure
    get_monte_carlo
    get_ai_prediction
-   get_equity_curves
+   get_equity_curve
    generate_stock_images
    get_pretrade_risk_scan
    generate_stock_research_report
